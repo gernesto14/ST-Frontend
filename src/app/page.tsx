@@ -13,7 +13,8 @@ export default function HomePage() {
   const session = useSessionContext();
 
   useEffect(() => {
-    if (session !== undefined) {
+    if (session.doesSessionExist) {
+      console.log("Session exists: ", session);
       setUserId(session.userId);
     }
   }, [session]);
@@ -51,7 +52,7 @@ export default function HomePage() {
 
       <section style={{ marginBottom: "20px" }} />
 
-      <h4>User ID {userId ? userId : "No userId available yet."}</h4>
+      <h4>User ID: {userId ? userId : "No userId available yet."}</h4>
 
       <section style={{ marginBottom: "20px" }} />
       <h4>Metadata:</h4>
