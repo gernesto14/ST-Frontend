@@ -8,13 +8,15 @@ import { useSessionContext } from "supertokens-auth-react/recipe/session";
 export default function HomePage() {
   const [metadata, setMetadata] = useState("");
 
-  const { userId, doesSessionExist } = useSessionContext();
+  const [userId, setUserId] = useState("");
+
+  const session = useSessionContext();
 
   useEffect(() => {
-    if (doesSessionExist) {
-      getMetadata();
+    if (session !== undefined) {
+      setUserId(session.userId);
     }
-  }, [doesSessionExist]);
+  }, [session]);
 
   // metadata
   async function getMetadata() {
