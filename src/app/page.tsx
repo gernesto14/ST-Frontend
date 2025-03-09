@@ -1,14 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSessionContext } from "supertokens-auth-react/recipe/session";
 
 export default function HomePage() {
   const [metadata, setMetadata] = useState("");
 
-  const { userId } = useSessionContext();
+  const { userId, doesSessionExist } = useSessionContext();
+
+  useEffect(() => {
+    if (doesSessionExist) {
+      getMetadata();
+    }
+  }, [doesSessionExist]);
 
   // metadata
   async function getMetadata() {
