@@ -23,7 +23,7 @@ export const frontendConfig = (): SuperTokensConfig => {
       EmailPasswordReact.init(),
       SessionReact.init({
         // https://supertokens.com/docs/post-authentication/session-management/switch-between-cookies-and-header-authentication
-        tokenTransferMethod: "header", // or "cookie"
+        tokenTransferMethod: "cookie", //"header", // or "cookie"
       }),
       EmailVerification.init({
         mode: "OPTIONAL", // "REQUIRED", // or "OPTIONAL"
