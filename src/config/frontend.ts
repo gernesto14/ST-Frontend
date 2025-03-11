@@ -19,8 +19,31 @@ export function setRouter(
 export const frontendConfig = (): SuperTokensConfig => {
   return {
     appInfo,
+    termsOfServiceLink: "https://example.com/terms-of-service",
+    privacyPolicyLink: "https://example.com/privacy-policy",
     recipeList: [
-      EmailPasswordReact.init(),
+      EmailPasswordReact.init(
+        //
+        {
+          signInAndUpFeature: {
+            signUpForm: {
+              formFields: [
+                {
+                  id: "first_name",
+                  label: "First Name",
+                  placeholder: "First name",
+                },
+                {
+                  id: "last_name",
+                  label: "Last Name",
+                  placeholder: "Last Name",
+                },
+              ],
+            },
+          },
+        }
+        //
+      ),
       SessionReact.init({
         // https://supertokens.com/docs/post-authentication/session-management/switch-between-cookies-and-header-authentication
         tokenTransferMethod: "header", //"header" or "cookie"
