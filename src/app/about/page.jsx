@@ -18,6 +18,7 @@ export default function AboutPage() {
   const [cookies, setCookies] = useState({});
   const [protectedData, setProtectedData] = useState({});
   const [metadata, setMetadata] = useState("");
+  const [test, setTest] = useState("");
 
   const router = useRouter();
   const { userId } = useSessionContext();
@@ -73,6 +74,16 @@ export default function AboutPage() {
       console.error("Error fetching test:", error.message);
     }
   }
+
+  async function getTest() {
+    try {
+      const response = await axios.get("http://localhost:5000/test");
+      console.log("RESPONSE from API origin: ", response);
+      setTest(response.status);
+    } catch (error) {
+      console.error("Error fetching test");
+    }
+  }
   return (
     <SessionAuth
       onSessionExpired={() => {
@@ -108,6 +119,11 @@ export default function AboutPage() {
             ? `${metadata.first_name} ${metadata.last_name}`
             : "No metadata available yet!"}
         </div>
+
+        <section style={{ marginBottom: "20px" }} />
+        <h4>Test:</h4>
+        <button onClick={getTest}>Get Test</button>
+        <h5>{test}</h5>
 
         <section style={{ marginBottom: "20px" }} />
         <h5>Display Cookies:</h5>
