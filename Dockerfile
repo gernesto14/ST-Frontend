@@ -1,23 +1,37 @@
-# Use the official Node.js image as the base image
-FROM node
+# Use the official Node.js image.
+FROM node:20-alpine
 
-# Set the working directory
-WORKDIR /app
+# # Create the app directory and set the appropriate permissions.
+# RUN mkdir -p /app
 
-# Copy package.json and package-lock.json
+# Set the working directory.
+WORKDIR /usr/src/app
+
+# Copy application dependency manifests to the container image.
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Switch to the node user.
+# USER node
 
-# Copy the rest of the application code
+
+
+# Install dependencies.
+RUN npm install --force
+
+# # Copy local code to the container image.
+# COPY --chown=node:node . .
+
+# ✅ Copy all files, including .env, before building
 COPY . .
 
-# Build the Next.js app
+# Build the Next.js application.
 RUN npm run build
 
-# Expose the port the app runs on
+# Expose the port the app runs on.
 EXPOSE 3000
 
-# Start the Next.js app
-CMD ["npm", "start"]
+# Run the web service on container startup.
+CMD [ "npm", "start" ]
+
+# # Set the user to use when running this image.
+# USER 1000  # node

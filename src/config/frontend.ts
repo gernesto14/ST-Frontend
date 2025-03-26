@@ -1,3 +1,5 @@
+'use client';
+
 import EmailPassword from "supertokens-auth-react/recipe/emailpassword";
 import SessionReact from "supertokens-auth-react/recipe/session";
 import { appInfo } from "./appInfo";
@@ -37,31 +39,8 @@ export const frontendConfig = (): SuperTokensConfig => {
     disableAuthRoute: false,
     termsOfServiceLink: "https://example.com/terms-of-service",
     privacyPolicyLink: "https://example.com/privacy-policy",
-    // getRedirectionURL: async (context) => {
-    //   console.log("getRedirectionURL Context: ", context);
 
-    //   if (context.action === "TO_AUTH") {
-    //     // If coming from signup (showSignIn is false), redirect to sign-in
-    //     if (context.showSignIn === false) {
-    //       console.log("User signed up, redirecting to sign-in");
-    //       // Redirect to sign-in
-    //       return "/auth?show=sign-in";
-    //     }
-    //     // Otherwise, just go to the auth page
-    //     return "/auth";
-    //   } else if (context.action === "SUCCESS" && context.newSessionCreated) {
-    //     // User logged in successfully
-    //     console.log("User logged in");
-    //     return "/about";
-    //   } else if (context.action === "PASSWORD_RESET_SUCCESSFUL") {
-    //     return "/auth";
-    //   } else if (context.action === "RESET_PASSWORD_EMAIL_SENT") {
-    //     // Handle password reset email sent
-    //   }
 
-    //   console.log("Default redirection");
-    //   return "/auth";
-    // },
     getRedirectionURL: async (context) => {
       console.log("getRedirectionURL Context: ", context);
 

@@ -29,9 +29,14 @@ export default function HomePage() {
   //   }
   // }
 
+  const url = `${process.env.NEXT_PUBLIC_SUPERTOKENS_API_DOMAIN}/metadata`;
   return (
     <div>
-      <h2>Home Page - NOT protected</h2>
+      <h2>
+        Home Page - NOTTT
+        {`${process.env.NEXT_PUBLIC_SUPERTOKENS_WEBSITE_DOMAIN}`} protected
+      </h2>
+      {url || "No URL available"}
 
       <section style={{ marginBottom: "20px" }} />
 
